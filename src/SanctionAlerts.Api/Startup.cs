@@ -26,6 +26,7 @@ namespace SanctionAlerts.Api
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
+			services.SetInfrastructure()
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +36,8 @@ namespace SanctionAlerts.Api
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+
 
 			app.UseHttpsRedirection();
 
