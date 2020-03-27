@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+using SanctionAlerts.Infrastructure;
+
 namespace SanctionAlerts.Api
 {
 	public class Startup
@@ -26,7 +28,7 @@ namespace SanctionAlerts.Api
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
-			services.SetInfrastructure()
+			services.SetInfrastructure();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

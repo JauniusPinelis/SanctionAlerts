@@ -15,9 +15,15 @@ namespace SanctionAlerts.Infrastructure.Services
 			_httpClientFactory = httpClientFactory;
 		}
 
-		public Task<string> GetData()
+		public async Task<string> GetData()
 		{
-			throw new NotImplementedException();
+			var client = _httpClientFactory.CreateClient("Sdn");
+
+			var result = await client.GetAsync("");
+
+			var resultString = await result.Content.ReadAsStringAsync();
+
+			return resultString;
 		}
 
 		public Task<string> GetHeaders()

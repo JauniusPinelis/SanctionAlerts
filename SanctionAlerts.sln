@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BEC37C42
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.DomainTests", "tests\SanctionAlerts.DomainTests\SanctionAlerts.DomainTests.csproj", "{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Application", "src\SanctionAlerts.Application\SanctionAlerts.Application.csproj", "{0E029A11-8BB0-45B1-8815-058E40CA6DA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{B65EEAD1-3094-4796-BA7E-462903C3189D} = {762D1E8F-4B23-4274-9ABC-60EC87277A2B}
 		{BC1C10A8-BE0A-4FDE-B513-2E57C258729A} = {762D1E8F-4B23-4274-9ABC-60EC87277A2B}
 		{AAF545D5-57D8-4685-99AF-79FF52E2CCCB} = {BEC37C42-5C90-4446-9CE6-3F61639C0A75}
+		{0E029A11-8BB0-45B1-8815-058E40CA6DA9} = {762D1E8F-4B23-4274-9ABC-60EC87277A2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {020FE1E4-8639-49FC-AA99-011DD77ECF5F}
