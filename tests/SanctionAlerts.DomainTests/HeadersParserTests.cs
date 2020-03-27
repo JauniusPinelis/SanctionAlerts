@@ -29,7 +29,8 @@ namespace SanctionAlerts.DomainTests
 
 			var lastModified = _parser.GetLastModifiedDate(headers);
 
-			lastModified.ToLongDateString().Should().Be("26 Mar 2020 14:23:25 GMT");
+			lastModified.HasValue.Should().BeTrue();
+			lastModified.Value.ToString().Should().Be("2020-03-26 16:23:25");
 		}
 	}
 }
