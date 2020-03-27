@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,9 @@ namespace SanctionAlerts.Infrastructure.Services
 
 			var result = await client.SendAsync(request);
 
-			var headers = result.Content.Headers.ToString();
+			var headers = result.Content.Headers.ToList();
 
-			return headers;
+			return headers.ToString();
 		}
 	}
 }
