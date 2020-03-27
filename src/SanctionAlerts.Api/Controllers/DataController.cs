@@ -24,6 +24,6 @@ namespace SanctionAlerts.Api.Controllers
 
 		[HttpGet]
 		public async Task<ActionResult> GetData()
-			=> Ok(await new GetData(_dataService).Do());
+			=> Ok(await new GetHeaders(_dataService).Do());
 	}
 }

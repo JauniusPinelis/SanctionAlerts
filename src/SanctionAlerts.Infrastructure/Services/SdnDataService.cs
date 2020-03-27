@@ -26,9 +26,18 @@ namespace SanctionAlerts.Infrastructure.Services
 			return resultString;
 		}
 
-		public Task<string> GetHeaders()
+		public async Task<string> GetHeaders()
 		{
-			throw new NotImplementedException();
+			var client = _httpClientFactory.CreateClient("Sdn");
+
+			HttpRequestMessage request = new HttpRequestMessage(
+			HttpMethod.Head, "");
+
+			var result = await client.SendAsync(request);
+
+			var headers = result.Content.Headers.ToString();
+
+			return headers;
 		}
 	}
 }
