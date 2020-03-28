@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SanctionAlerts.Database.Entities;
 using SanctionAlerts.Domain.Contracts;
 using SanctionAlerts.Domain.Models;
 using System;
@@ -14,6 +15,7 @@ namespace SanctionAlerts.Application.Mappings
 			CreateMap<ParsedSdnEntry, SdnEntry>()
 				.ForMember(dest => dest.UId,
 				opt => opt.MapFrom(src => int.Parse(src.UId)));
+			CreateMap<SdnEntry, SdnEntity>();
 		}
 
 		

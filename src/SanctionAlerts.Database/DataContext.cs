@@ -19,6 +19,13 @@ namespace SanctionAlerts.Database
 			
 		}
 
+		public async Task<DateTime?> GetSvcLastModified()
+		{
+			var SvcFileEntity =  await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
+
+			return SvcFileEntity.LastModified;
+		}
+
 		public async Task UpdateSvcLastModified(DateTime lastModified)
 		{
 			var existingEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
@@ -42,10 +49,20 @@ namespace SanctionAlerts.Database
 
 		public async Task UpdateSdnData(IEnumerable<SdnEntry> sdnEntries)
 		{
-			foreach(var sdnEntry in sdnEntries)
-			{
-				
-			}
+			//foreach(var sdnEntry in sdnEntries)
+			//{
+			//	var sdnEntity = SdnEntities.FirstOrDefault(s => s.UId == sdnEntry.UId);
+			//	/* ok this is complex - i can compare simple data currently
+			//	 * but what if there are many properties - how to compare? 
+			//	 * reflection or hash could be a solution?*/
+			//	 if (sdnEntity.LastName != sdnEntry.LastName 
+			//		|| sdnEntity.SdnType != sdnEntry.SdnType)
+			//	{
+			//		sdnEntity.LastName = sdnEntry.LastName;
+			//		sdnEntity.SdnType = sdnEntry.SdnType;
+			//		sdnEntity.LastModified = DateTime.Now;
+			//	}
+			//}
 
 			await SaveChangesAsync();
 

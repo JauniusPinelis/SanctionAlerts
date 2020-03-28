@@ -29,6 +29,7 @@ namespace SanctionAlerts.Application.Jobs
 
 		public async Task Do()
 		{
+
 			var unstructuredData = await _dataService.GetData();
 
 			var parsedSdnEntries = _parser.ParseFileData(unstructuredData);

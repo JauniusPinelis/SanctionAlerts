@@ -10,5 +10,6 @@ namespace SanctionAlerts.Database.Entities
 		public string Name { get; set; }
 		public DateTime LastModified { get; set; }
 		public DateTime LastUpdated { get; set; }
+		public DateTime? LastDownloaded { get; set; }
 	}
 }
