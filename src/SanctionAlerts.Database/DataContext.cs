@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SanctionAlerts.Database.Entities;
+using SanctionAlerts.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace SanctionAlerts.Database
 	public class DataContext : DbContext
 	{
 		public DbSet<FileInfo> FileInfos { get; set; }
+		public DbSet<SdnEntity> SdnEntities { get; set; }
 
 		public DataContext(DbContextOptions options) : base(options)
 		{
@@ -35,6 +37,19 @@ namespace SanctionAlerts.Database
 			});
 			}
 			await SaveChangesAsync();
+
+		}
+
+		public async Task UpdateSdnData(IEnumerable<SdnEntry> sdnEntries)
+		{
+			foreach(var sdnEntry in sdnEntries)
+			{
+				
+			}
+
+			await SaveChangesAsync();
+
+			throw new NotImplementedException();
 
 		}
 	}

@@ -34,6 +34,8 @@ namespace SanctionAlerts.Application.Jobs
 			var parsedSdnEntries = _parser.ParseFileData(unstructuredData);
 
 			var sdnEntries = _mapper.Map<List<SdnEntry>>(parsedSdnEntries);
+
+			await _context.UpdateSdnData(sdnEntries);
 		}
 	}
 }

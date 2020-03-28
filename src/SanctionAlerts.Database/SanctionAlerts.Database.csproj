@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SanctionAlerts.Domain\SanctionAlerts.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
