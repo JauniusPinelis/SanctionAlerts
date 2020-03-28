@@ -27,7 +27,7 @@ namespace SanctionAlerts.Infrastructure.Services
 			return resultString;
 		}
 
-		public async Task<string> GetHeaders()
+		public async Task<List<KeyValuePair<string, IEnumerable<string>>>> GetHeaders()
 		{
 			var client = _httpClientFactory.CreateClient("Sdn");
 
@@ -38,7 +38,7 @@ namespace SanctionAlerts.Infrastructure.Services
 
 			var headers = result.Content.Headers.ToList();
 
-			return headers.ToString();
+			return headers;
 		}
 	}
 }

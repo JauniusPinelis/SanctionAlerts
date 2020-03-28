@@ -54,7 +54,6 @@ namespace SanctionAlerts.Api
 			});
 
 			app.UseHangfireDashboard();
-			backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 		}
 	}
 }

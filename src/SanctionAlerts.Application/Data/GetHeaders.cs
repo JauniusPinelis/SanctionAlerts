@@ -15,7 +15,7 @@ namespace SanctionAlerts.Application.Data
 			_dataService = dataService;
 		}
 
-		public async Task<string> Do()
+		public async Task<List<KeyValuePair<string, IEnumerable<string>>>> Do()
 		{
 			return await _dataService.GetHeaders();
 		}

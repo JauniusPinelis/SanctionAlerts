@@ -8,6 +8,6 @@ namespace SanctionAlerts.Infrastructure.Services
 	public interface IDataService
 	{
 		Task<string> GetData();
-		Task<string> GetHeaders();
+		Task<List<KeyValuePair<string, IEnumerable<string>>>> GetHeaders();
 	}
 }
