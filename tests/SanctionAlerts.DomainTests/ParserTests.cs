@@ -35,12 +35,23 @@ namespace SanctionAlerts.DomainTests
 		}
 
 		[Test]
-		public void ParseFileData_GivenCorrectXml_ParsesDataCorrectly()
+		public void ParseFileData_GivenTestXml_CountIsCorrect()
 		{
 			string textData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
 			var sdnEntries =  _parser.ParseFileData(textData);
 
 			sdnEntries.Count.Should().Be(2);
+		}
+
+		[Test]
+		public void ParseFileData_GivenTestXml_ParsesBasicData()
+		{
+			string textData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
+			var sdnEntries = _parser.ParseFileData(textData);
+
+			sdnEntries[1].UId.Should().Be("306");
+			sdnEntries[1].LastName.Should().Be("BANCO NACIONAL DE CUBA");
+			sdnEntries[1].SdnType.Should().Be("Entity");
 		}
 	}
 }

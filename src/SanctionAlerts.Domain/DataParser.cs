@@ -4,9 +4,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Linq;
 using System.Globalization;
-using SanctionAlerts.Domain.models;
 using Newtonsoft.Json;
 using System.Xml.Linq;
+using SanctionAlerts.Domain.Contracts;
 
 namespace SanctionAlerts.Domain
 {
@@ -36,10 +36,10 @@ namespace SanctionAlerts.Domain
 			var data = from entry in xdoc.Descendants(ns + "sdnEntry")
 					   select new SdnEntry
 					   {
-						   Id = entry.Element(ns + "uid").Value
+						   UId = entry.Element(ns + "uid").Value,
+						   LastName = entry.Element(ns + "lastName").Value,
+						   SdnType = entry.Element(ns + "sdnType").Value,
 					   };
-
-
 			return data.ToList();
 		}
 	}

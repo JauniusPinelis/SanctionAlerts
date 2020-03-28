@@ -2,7 +2,7 @@
 <sdnList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tempuri.org/sdnList.xsd">
 	<publshInformation>
 		<Publish_Date>03/26/2020</Publish_Date>
-		<Record_Count>1</Record_Count>
+		<Record_Count>2</Record_Count>
 	</publshInformation>
 	<sdnEntry>
 		<uid>173</uid>
