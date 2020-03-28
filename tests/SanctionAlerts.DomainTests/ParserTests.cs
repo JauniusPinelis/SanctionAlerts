@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SanctionAlerts.Domain;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SanctionAlerts.DomainTests
 {
@@ -37,9 +38,9 @@ namespace SanctionAlerts.DomainTests
 		public void ParseFileData_GivenCorrectXml_ParsesDataCorrectly()
 		{
 			string textData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
-			var data =  _parser.ParseFileData(textData);
+			var sdnEntries =  _parser.ParseFileData(textData);
 
-			data.SdnEntries.Count.Should().Be(1);
+			sdnEntries.Count.Should().Be(2);
 		}
 	}
 }

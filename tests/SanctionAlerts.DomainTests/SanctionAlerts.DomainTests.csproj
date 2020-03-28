@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <None Update="Data\TestData.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

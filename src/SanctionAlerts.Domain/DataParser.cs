@@ -5,6 +5,8 @@ using System.Text;
 using System.Linq;
 using System.Globalization;
 using SanctionAlerts.Domain.models;
+using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace SanctionAlerts.Domain
 {
@@ -25,9 +27,20 @@ namespace SanctionAlerts.Domain
 			return null;
 		}
 
-		public SdnData ParseFileData(string data)
+		public List<SdnEntry> ParseFileData(string xmlData)
 		{
-			throw new NotImplementedException();
+
+			XDocument xdoc = XDocument.Parse(xmlData);
+			XNamespace ns = "http://tempuri.org/sdnList.xsd";
+
+			var data = from entry in xdoc.Descendants(ns + "sdnEntry")
+					   select new SdnEntry
+					   {
+						   Id = entry.Element(ns + "uid").Value
+					   };
+
+
+			return data.ToList();
 		}
 	}
 }
