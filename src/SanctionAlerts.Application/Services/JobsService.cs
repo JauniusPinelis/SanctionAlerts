@@ -29,6 +29,6 @@ namespace SanctionAlerts.Application.Jobs.Services
 		=> await new FetchHeaders(_dataService, _context, _parser).Do();
 
 		public async Task FetchData()
-		=> await new FetchData(_dataService, _context, _parser).Do();
+		=> await new FetchData(_dataService, _context, _parser, _mapper).Do();
 	}
 }
