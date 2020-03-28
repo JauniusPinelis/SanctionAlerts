@@ -1,4 +1,5 @@
-﻿using SanctionAlerts.Database;
+﻿using AutoMapper;
+using SanctionAlerts.Database;
 using SanctionAlerts.Domain;
 using SanctionAlerts.Infrastructure.Services;
 using System;
@@ -13,11 +14,13 @@ namespace SanctionAlerts.Application.Jobs.Services
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
 		private readonly DataParser _parser;
+		private readonly IMapper _mapper;
 
-		public JobsService(IDataService dataService, DataContext dataContext)
+		public JobsService(IDataService dataService, DataContext dataContext, IMapper mapper)
 		{
 			_dataService = dataService;
 			_context = dataContext;
+			_mapper = mapper;
 
 			_parser = new DataParser();
 		}

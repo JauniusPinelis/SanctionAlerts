@@ -28,6 +28,7 @@ namespace SanctionAlerts.Application.Jobs
 			var unstructuredData = await _dataService.GetData();
 
 			var structureData = _parser.ParseFileData(unstructuredData);
+
 		}
 	}
 }

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SanctionAlerts.Database\SanctionAlerts.Database.csproj" />
     <ProjectReference Include="..\SanctionAlerts.Domain\SanctionAlerts.Domain.csproj" />
     <ProjectReference Include="..\SanctionAlerts.Infrastructure\SanctionAlerts.Infrastructure.csproj" />
