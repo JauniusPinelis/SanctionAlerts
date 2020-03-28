@@ -5,19 +5,21 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{762D1E8F-4B23-4274-9ABC-60EC87277A2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Api", "src\SanctionAlerts.Api\SanctionAlerts.Api.csproj", "{23B3FE05-378D-4AEF-A619-87B991DD5933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.Api", "src\SanctionAlerts.Api\SanctionAlerts.Api.csproj", "{23B3FE05-378D-4AEF-A619-87B991DD5933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Domain", "src\SanctionAlerts.Domain\SanctionAlerts.Domain.csproj", "{FA792D49-F0A4-4FE1-B4F2-3510A90792A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.Domain", "src\SanctionAlerts.Domain\SanctionAlerts.Domain.csproj", "{FA792D49-F0A4-4FE1-B4F2-3510A90792A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Database", "src\SanctionAlerts.Database\SanctionAlerts.Database.csproj", "{B65EEAD1-3094-4796-BA7E-462903C3189D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.Database", "src\SanctionAlerts.Database\SanctionAlerts.Database.csproj", "{B65EEAD1-3094-4796-BA7E-462903C3189D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Infrastructure", "src\SanctionAlerts.Infrastructure\SanctionAlerts.Infrastructure.csproj", "{BC1C10A8-BE0A-4FDE-B513-2E57C258729A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.Infrastructure", "src\SanctionAlerts.Infrastructure\SanctionAlerts.Infrastructure.csproj", "{BC1C10A8-BE0A-4FDE-B513-2E57C258729A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BEC37C42-5C90-4446-9CE6-3F61639C0A75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.DomainTests", "tests\SanctionAlerts.DomainTests\SanctionAlerts.DomainTests.csproj", "{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.DomainTests", "tests\SanctionAlerts.DomainTests\SanctionAlerts.DomainTests.csproj", "{AAF545D5-57D8-4685-99AF-79FF52E2CCCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.Application", "src\SanctionAlerts.Application\SanctionAlerts.Application.csproj", "{0E029A11-8BB0-45B1-8815-058E40CA6DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanctionAlerts.Application", "src\SanctionAlerts.Application\SanctionAlerts.Application.csproj", "{0E029A11-8BB0-45B1-8815-058E40CA6DA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanctionAlerts.ApplicationTests", "Tests\SanctionAlerts.ApplicationTests\SanctionAlerts.ApplicationTests.csproj", "{5925C93A-14E9-4226-9F7E-85C122D5892B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E029A11-8BB0-45B1-8815-058E40CA6DA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5925C93A-14E9-4226-9F7E-85C122D5892B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5925C93A-14E9-4226-9F7E-85C122D5892B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5925C93A-14E9-4226-9F7E-85C122D5892B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5925C93A-14E9-4226-9F7E-85C122D5892B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{BC1C10A8-BE0A-4FDE-B513-2E57C258729A} = {762D1E8F-4B23-4274-9ABC-60EC87277A2B}
 		{AAF545D5-57D8-4685-99AF-79FF52E2CCCB} = {BEC37C42-5C90-4446-9CE6-3F61639C0A75}
 		{0E029A11-8BB0-45B1-8815-058E40CA6DA9} = {762D1E8F-4B23-4274-9ABC-60EC87277A2B}
+		{5925C93A-14E9-4226-9F7E-85C122D5892B} = {BEC37C42-5C90-4446-9CE6-3F61639C0A75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {020FE1E4-8639-49FC-AA99-011DD77ECF5F}
