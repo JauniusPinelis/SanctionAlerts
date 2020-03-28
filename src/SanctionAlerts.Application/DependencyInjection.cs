@@ -1,6 +1,6 @@
 ﻿using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
-using SanctionAlerts.Application.Jobs;
+using SanctionAlerts.Application.Jobs.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;

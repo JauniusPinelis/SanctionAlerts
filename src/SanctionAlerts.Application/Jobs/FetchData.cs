@@ -8,21 +8,23 @@ using System.Threading.Tasks;
 
 namespace SanctionAlerts.Application.Jobs
 {
-	public class JobsService : IJobsService
+	public class FetchData
 	{
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
 		private readonly HeadersParser _parser;
 
-		public JobsService(IDataService dataService, DataContext dataContext)
+		public FetchData(IDataService dataService, DataContext context, 
+			HeadersParser parser)
 		{
 			_dataService = dataService;
-			_context = dataContext;
-
-			_parser = new HeadersParser();
+			_context = context;
+			_parser = parser;
 		}
 
-		public async Task FetchHeaders()
-		=> await new FetchHeaders(_dataService, _context, _parser).Do();
+		public async Task Do()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
