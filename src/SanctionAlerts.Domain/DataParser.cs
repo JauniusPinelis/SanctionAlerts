@@ -4,10 +4,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Linq;
 using System.Globalization;
+using SanctionAlerts.Domain.models;
 
 namespace SanctionAlerts.Domain
 {
-	public class HeadersParser
+	public class DataParser
 	{
 		public DateTime? GetLastModifiedDate(List<KeyValuePair<string, IEnumerable<string>>> headers)
 		{
@@ -22,6 +23,11 @@ namespace SanctionAlerts.Domain
 			}
 
 			return null;
+		}
+
+		public SdnData ParseFileData(string data)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

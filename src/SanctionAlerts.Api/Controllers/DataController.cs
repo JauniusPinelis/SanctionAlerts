@@ -19,7 +19,7 @@ namespace SanctionAlerts.Api.Controllers
 		private readonly ILogger<DataController> _logger;
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
-		private readonly HeadersParser _parser;
+		private readonly DataParser _parser;
 
 		public DataController(ILogger<DataController> logger, IDataService dataService)
 		{

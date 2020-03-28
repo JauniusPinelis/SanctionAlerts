@@ -1,4 +1,5 @@
-﻿using SanctionAlerts.Database;
+﻿using Newtonsoft.Json;
+using SanctionAlerts.Database;
 using SanctionAlerts.Domain;
 using SanctionAlerts.Infrastructure.Services;
 using System;
@@ -12,10 +13,10 @@ namespace SanctionAlerts.Application.Jobs
 	{
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
-		private readonly HeadersParser _parser;
+		private readonly DataParser _parser;
 
 		public FetchData(IDataService dataService, DataContext context, 
-			HeadersParser parser)
+			DataParser parser)
 		{
 			_dataService = dataService;
 			_context = context;
@@ -24,7 +25,9 @@ namespace SanctionAlerts.Application.Jobs
 
 		public async Task Do()
 		{
-			throw new NotImplementedException();
+			var unstructuredData = await _dataService.GetData();
+
+			var data = _parser.ParseFileData(unstructuredData);
 		}
 	}
 }

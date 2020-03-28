@@ -2,17 +2,17 @@ using FluentAssertions;
 using NUnit.Framework;
 using SanctionAlerts.Domain;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
+using System.IO;
 
 namespace SanctionAlerts.DomainTests
 {
-	public class HeadersParsersTests
+	public class ParserTests
 	{
-		private readonly HeadersParser _parser;
+		private readonly DataParser _parser;
 
-		public HeadersParsersTests()
+		public ParserTests()
 		{
-			_parser = new HeadersParser();
+			_parser = new DataParser();
 		}
 
 		[Test]
@@ -31,6 +31,15 @@ namespace SanctionAlerts.DomainTests
 
 			lastModified.HasValue.Should().BeTrue();
 			lastModified.Value.ToString().Should().Be("2020-03-26 16:23:25");
+		}
+
+		[Test]
+		public void ParseFileData_GivenCorrectXml_ParsesDataCorrectly()
+		{
+			string textData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
+			var data =  _parser.ParseFileData(textData);
+
+			data.SdnEntries.Count.Should().Be(1);
 		}
 	}
 }

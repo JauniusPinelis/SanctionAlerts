@@ -12,14 +12,14 @@ namespace SanctionAlerts.Application.Jobs.Services
 	{
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
-		private readonly HeadersParser _parser;
+		private readonly DataParser _parser;
 
 		public JobsService(IDataService dataService, DataContext dataContext)
 		{
 			_dataService = dataService;
 			_context = dataContext;
 
-			_parser = new HeadersParser();
+			_parser = new DataParser();
 		}
 
 		public async Task FetchHeaders()
