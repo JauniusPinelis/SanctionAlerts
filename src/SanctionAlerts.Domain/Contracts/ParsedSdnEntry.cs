@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SanctionAlerts.Domain.Contracts
 {
-	public class SdnEntry
+	public class ParsedSdnEntry
 	{
 		public string UId { get; set; }
 		public string LastName { get; set; }

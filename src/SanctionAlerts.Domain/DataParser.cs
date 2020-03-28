@@ -27,19 +27,20 @@ namespace SanctionAlerts.Domain
 			return null;
 		}
 
-		public List<SdnEntry> ParseFileData(string xmlData)
+		public List<ParsedSdnEntry> ParseFileData(string xmlData)
 		{
 
 			XDocument xdoc = XDocument.Parse(xmlData);
 			XNamespace ns = "http://tempuri.org/sdnList.xsd";
 
 			var data = from entry in xdoc.Descendants(ns + "sdnEntry")
-					   select new SdnEntry
+					   select new ParsedSdnEntry
 					   {
 						   UId = entry.Element(ns + "uid").Value,
 						   LastName = entry.Element(ns + "lastName").Value,
 						   SdnType = entry.Element(ns + "sdnType").Value,
 					   };
+
 			return data.ToList();
 		}
 	}
