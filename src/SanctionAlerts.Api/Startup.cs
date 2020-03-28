@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 
 using SanctionAlerts.Infrastructure;
 using SanctionAlerts.Database;
+using Hangfire;
 
 namespace SanctionAlerts.Api
 {
@@ -29,12 +30,12 @@ namespace SanctionAlerts.Api
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
-			services.SetInfrastructure();
+			services.SetInfrastructure(Configuration["ConnectionStrings:DefaultConnection"]);
 			services.SetDatabase(Configuration["ConnectionStrings:DefaultConnection"]);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IBackgroundJobClient backgroundJobs, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -51,6 +52,9 @@ namespace SanctionAlerts.Api
 			{
 				endpoints.MapControllers();
 			});
+
+			app.UseHangfireDashboard();
+			backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 		}
 	}
 }
