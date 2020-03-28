@@ -29,14 +29,24 @@ namespace SanctionAlerts.Application.Jobs
 
 		public async Task Do()
 		{
+			var lastDownloaded = await _context.GetSvcLastDownloaded();
+			var lastModified = await _context.GetSvcLastModified();
 
-			var unstructuredData = await _dataService.GetData();
+			if (lastDownloaded.HasValue && lastDownloaded.Value > lastModified)
+			{
+				// Do nothing
+			}
+			else
+			{
+				var unstructuredData = await _dataService.GetData();
 
-			var parsedSdnEntries = _parser.ParseFileData(unstructuredData);
+				var parsedSdnEntries = _parser.ParseFileData(unstructuredData);
 
-			var sdnEntries = _mapper.Map<List<SdnEntry>>(parsedSdnEntries);
+				var sdnEntries = _mapper.Map<List<SdnEntry>>(parsedSdnEntries);
 
-			await _context.UpdateSdnData(sdnEntries);
+				await _context.UpdateSdnData(sdnEntries);
+			}
+			
 		}
 	}
 }

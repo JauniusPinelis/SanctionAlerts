@@ -19,9 +19,16 @@ namespace SanctionAlerts.Database
 			
 		}
 
-		public async Task<DateTime?> GetSvcLastModified()
+		public async Task<DateTime?> GetSvcLastDownloaded()
 		{
 			var SvcFileEntity =  await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
+
+			return SvcFileEntity.LastDownloaded;
+		}
+
+		public async Task<DateTime?> GetSvcLastModified()
+		{
+			var SvcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
 
 			return SvcFileEntity.LastModified;
 		}
