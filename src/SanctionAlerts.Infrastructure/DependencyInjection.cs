@@ -33,6 +33,8 @@ namespace SanctionAlerts.Infrastructure
 				   DisableGlobalLocks = true
 			   }));
 
+			JobStorage.Current = new SqlServerStorage(connectionString);
+
 			services.AddHangfireServer();
 		}
 	}

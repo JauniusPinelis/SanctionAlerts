@@ -8,29 +8,21 @@ using System.Threading.Tasks;
 
 namespace SanctionAlerts.Application.Jobs
 {
-	public class FetchHeaders
+	public class JobsService : IJobsService
 	{
 		private readonly IDataService _dataService;
 		private readonly DataContext _context;
 		private readonly HeadersParser _parser;
 
-		public FetchHeaders(IDataService dataService, DataContext context, 
-			HeadersParser parser)
+		public JobsService(IDataService dataService, DataContext dataContext)
 		{
 			_dataService = dataService;
-			_context = context;
-			_parser = parser;
+			_context = dataContext;
+
+			_parser = new HeadersParser();
 		}
 
-		public async Task Do()
-		{
-			var headerData =  await _dataService.GetHeaders();
-			var lastModified = _parser.GetLastModifiedDate(headerData);
-			if (lastModified.HasValue)
-			{
-				await _context.UpdateSvcLastModified(lastModified.Value);
-			}
-			
-		}
+		public async Task FetchHeaders()
+		=> await new FetchHeaders(_dataService, _context, _parser).Do();
 	}
 }

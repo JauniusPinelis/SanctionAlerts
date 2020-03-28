@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using SanctionAlerts.Infrastructure;
 using SanctionAlerts.Database;
 using Hangfire;
+using SanctionAlerts.Application.Jobs;
+using SanctionAlerts.Application;
 
 namespace SanctionAlerts.Api
 {
@@ -32,6 +34,7 @@ namespace SanctionAlerts.Api
 			services.AddControllers();
 			services.SetInfrastructure(Configuration["ConnectionStrings:DefaultConnection"]);
 			services.SetDatabase(Configuration["ConnectionStrings:DefaultConnection"]);
+			services.SetJobs();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

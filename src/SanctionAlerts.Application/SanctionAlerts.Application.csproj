@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SanctionAlerts.Database\SanctionAlerts.Database.csproj" />
+    <ProjectReference Include="..\SanctionAlerts.Domain\SanctionAlerts.Domain.csproj" />
     <ProjectReference Include="..\SanctionAlerts.Infrastructure\SanctionAlerts.Infrastructure.csproj" />
   </ItemGroup>
 
