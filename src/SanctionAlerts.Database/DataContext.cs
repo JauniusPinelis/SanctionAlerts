@@ -28,9 +28,9 @@ namespace SanctionAlerts.Database
 
 		public async Task<DateTime?> GetSvcLastModified()
 		{
-			var SvcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
+			var svcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
 
-			return SvcFileEntity.LastModified;
+			return svcFileEntity.LastModified;
 		}
 
 		public async Task UpdateSvcLastModified(DateTime lastModified)
@@ -54,26 +54,49 @@ namespace SanctionAlerts.Database
 
 		}
 
+		public async Task UpdateLastDownloaded()
+		{
+			var svcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
+			svcFileEntity.LastDownloaded = DateTime.Now;
+			await SaveChangesAsync();
+		}
+
 		public async Task UpdateSdnData(IEnumerable<SdnEntry> sdnEntries)
 		{
-			//foreach(var sdnEntry in sdnEntries)
-			//{
-			//	var sdnEntity = SdnEntities.FirstOrDefault(s => s.UId == sdnEntry.UId);
-			//	/* ok this is complex - i can compare simple data currently
-			//	 * but what if there are many properties - how to compare? 
-			//	 * reflection or hash could be a solution?*/
-			//	 if (sdnEntity.LastName != sdnEntry.LastName 
-			//		|| sdnEntity.SdnType != sdnEntry.SdnType)
-			//	{
-			//		sdnEntity.LastName = sdnEntry.LastName;
-			//		sdnEntity.SdnType = sdnEntry.SdnType;
-			//		sdnEntity.LastModified = DateTime.Now;
-			//	}
-			//}
+			foreach (var sdnEntry in sdnEntries)
+			{
+				var sdnEntity = SdnEntities.FirstOrDefault(s => s.UId == sdnEntry.UId);
 
-			await SaveChangesAsync();
+				if (sdnEntity != null)
+				{
+					/* ok this is complex - i can compare simple data currently
+				 * but what if there are many properties - how to compare? 
+				 * reflection or hash could be a solution?*/
+					if (sdnEntity.LastName != sdnEntry.LastName
+					   || sdnEntity.SdnType != sdnEntry.SdnType)
+					{
+						sdnEntity.LastName = sdnEntry.LastName;
+						sdnEntity.SdnType = sdnEntry.SdnType;
+						sdnEntity.LastModified = DateTime.Now;
+					}
+					await SaveChangesAsync();
+				}
+				else
+				{
+					// I need to move Automapper here
+					SdnEntities.Add(new SdnEntity()
+					{
+						UId = sdnEntry.UId,
+						LastName = sdnEntry.LastName,
+						SdnType = sdnEntry.SdnType,
+						LastModified = DateTime.Now
+					}
+					);
+					await SaveChangesAsync();
+				}
+			}
 
-			throw new NotImplementedException();
+			
 
 		}
 	}

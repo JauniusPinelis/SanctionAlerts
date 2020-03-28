@@ -34,6 +34,7 @@ namespace SanctionAlerts.Api
 			services.AddControllers();
 			services.SetInfrastructure(Configuration["ConnectionStrings:DefaultConnection"]);
 			services.SetDatabase(Configuration["ConnectionStrings:DefaultConnection"]);
+			services.SetAutoMapper();
 			services.SetJobs();
 		}
 

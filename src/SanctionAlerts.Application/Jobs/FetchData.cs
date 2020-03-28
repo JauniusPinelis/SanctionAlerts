@@ -45,6 +45,8 @@ namespace SanctionAlerts.Application.Jobs
 				var sdnEntries = _mapper.Map<List<SdnEntry>>(parsedSdnEntries);
 
 				await _context.UpdateSdnData(sdnEntries);
+
+				await _context.UpdateLastDownloaded();
 			}
 			
 		}

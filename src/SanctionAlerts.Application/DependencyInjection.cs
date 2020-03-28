@@ -14,9 +14,10 @@ namespace SanctionAlerts.Application
 		public static void SetJobs(this IServiceCollection services)
 		{
 			RecurringJob.AddOrUpdate<JobsService>(j => j.FetchHeaders(), Cron.Minutely);
+			RecurringJob.AddOrUpdate<JobsService>(j => j.FetchData(), Cron.Minutely);
 		}
 
-		public static void SetAutoMapper(this ServiceCollection services)
+		public static void SetAutoMapper(this IServiceCollection services)
 		{
 			var mappingConfig = new MapperConfiguration(mc =>
 			{
