@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 using SanctionAlerts.Infrastructure;
+using SanctionAlerts.Database;
 
 namespace SanctionAlerts.Api
 {
@@ -29,6 +30,7 @@ namespace SanctionAlerts.Api
 		{
 			services.AddControllers();
 			services.SetInfrastructure();
+			services.SetDatabase(Configuration["ConnectionStrings:DefaultConnection"]);
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,8 +40,6 @@ namespace SanctionAlerts.Api
 			{
 				app.UseDeveloperExceptionPage();
 			}
-
-
 
 			app.UseHttpsRedirection();
 
