@@ -1,6 +1,12 @@
 import React, { Component, ReactNode } from "react";
 
-interface Props {}
+import Table from "react-bootstrap/Table";
+
+interface Props {
+  lastModified: string;
+  lastHeadersChecked: string;
+  lastDownloaded: string;
+}
 interface State {}
 
 class ServiceSats extends Component<Props, State> {
@@ -11,7 +17,28 @@ class ServiceSats extends Component<Props, State> {
   }
 
   render(): ReactNode {
-    return <h1>Service Stats</h1>;
+    return (
+      <Table striped bordered hover>
+        <tbody>
+          <tr>
+            <td>Last Checked Headers</td>
+            <td>{this.props.lastHeadersChecked}</td>
+          </tr>
+          <tr>
+            <td>Last Downloaded</td>
+            <td>{this.props.lastDownloaded}</td>
+          </tr>
+          <tr>
+            <td>Last Content Modified</td>
+            <td>{this.props.lastModified}</td>
+          </tr>
+          <tr>
+            <td>Refresh</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </Table>
+    );
   }
 }
 

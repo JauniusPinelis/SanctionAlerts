@@ -24,7 +24,6 @@ class SdnEntryTable extends Component<Props, State> {
   render(): ReactNode {
     return (
       <div>
-        <h3>Points </h3>
         <Table striped bordered hover>
           <thead>
             <tr>

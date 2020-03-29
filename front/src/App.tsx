@@ -24,15 +24,26 @@ interface SdnEntry {
 
 interface State {
   sdnEntries: SdnEntry[];
+  lastModified: string;
+  lastHeadersChecked: string;
+  lastDownloaded: string;
 }
 
 class App extends Component {
   state: State = {
-    sdnEntries: []
+    sdnEntries: [],
+    lastModified: "",
+    lastHeadersChecked: "",
+    lastDownloaded: ""
   };
   componentDidMount() {
     axios.get(`/data`).then(res => {
-      this.setState({ sdnEntries: res.data.sdnEntries });
+      this.setState({
+        sdnEntries: res.data.sdnEntries,
+        lastModified: res.data.lastModified,
+        lastHeadersChecked: res.data.lastHeadersChecked,
+        lastDownloaded: res.data.lastDownloaded
+      });
     });
   }
   render(): ReactNode {
@@ -44,7 +55,11 @@ class App extends Component {
               <SdnEntryTable sdnEntries={this.state.sdnEntries} />
             </Col>
             <Col>
-              <ServiceStats />
+              <ServiceStats
+                lastDownloaded={this.state.lastDownloaded}
+                lastHeadersChecked={this.state.lastHeadersChecked}
+                lastModified={this.state.lastModified}
+              />
             </Col>
           </Row>
         </Container>
