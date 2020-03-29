@@ -16,10 +16,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 interface SdnEntry {
-  uid: number;
+  uId: number;
   lastName: string;
   sdnType: string;
-  LastModified: Date;
+  lastModified: Date;
 }
 
 interface State {
@@ -41,7 +41,7 @@ class App extends Component {
         <Container>
           <Row>
             <Col>
-              <SdnEntryTable />
+              <SdnEntryTable sdnEntries={this.state.sdnEntries} />
             </Col>
             <Col>
               <ServiceStats />

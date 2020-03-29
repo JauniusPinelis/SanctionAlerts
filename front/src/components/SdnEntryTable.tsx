@@ -1,6 +1,17 @@
 import React, { Component, ReactNode } from "react";
 
-interface Props {}
+import Table from "react-bootstrap/Table";
+
+interface SdnEntry {
+  uId: number;
+  lastName: string;
+  sdnType: string;
+  lastModified: Date;
+}
+
+interface Props {
+  sdnEntries: SdnEntry[];
+}
 interface State {}
 
 class SdnEntryTable extends Component<Props, State> {
@@ -11,7 +22,31 @@ class SdnEntryTable extends Component<Props, State> {
   }
 
   render(): ReactNode {
-    return <h1>SdnEntryTable</h1>;
+    return (
+      <div>
+        <h3>Points </h3>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Last Name</th>
+              <th>Type</th>
+              <th>Last Modified</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.sdnEntries.map((sdn, i) => (
+              <tr key={sdn.uId}>
+                <td>{sdn.uId}</td>
+                <td>{sdn.lastName}</td>
+                <td>{sdn.sdnType}</td>
+                <td>{sdn.lastModified}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    );
   }
 }
 
