@@ -1,7 +1,13 @@
 import React, { Component, ReactNode } from "react";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import axios from "axios";
+
+/* React-bootstrap components */
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 interface SdnEntry {
   uid: number;
@@ -26,16 +32,12 @@ class App extends Component {
   render(): ReactNode {
     return (
       <div className="App">
-        <header className="App-header">
-          {this.state.sdnEntries.map(entry => (
-            <div>
-              <div>{entry.uid}</div>
-              <div>{entry.lastName}</div>
-              <div>{entry.sdnType}</div>
-              <div>{entry.LastModified}</div>
-            </div>
-          ))}
-        </header>
+        <Container>
+          <Row>
+            <Col>col1</Col>
+            <Col>col2</Col>
+          </Row>
+        </Container>
       </div>
     );
   }
