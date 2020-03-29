@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,20 +17,17 @@ namespace SanctionAlerts.Api.Controllers
 	[Route("[controller]")]
 	public class DataController : ControllerBase
 	{
-		private readonly ILogger<DataController> _logger;
-		private readonly IDataService _dataService;
 		private readonly DataContext _context;
-		private readonly DataParser _parser;
+		private readonly IMapper _mapper;
 
-		public DataController(ILogger<DataController> logger, IDataService dataService)
+		public DataController(DataContext context, IMapper mapper)
 		{
-			_logger = logger;
-			_dataService = dataService;
-			
+			_context = context;
+			_mapper = mapper;
 		}
 
 		[HttpGet]
-		public async Task<ActionResult> GetData()
-			=> Ok(await new GetHeaders(_dataService).Do());
+		public async Task<GetLatestData.Response> GetData()
+			=> await new GetLatestData(_context, _mapper).Do();
 	}
 }
