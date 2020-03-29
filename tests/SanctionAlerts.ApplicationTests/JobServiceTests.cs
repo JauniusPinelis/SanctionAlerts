@@ -26,21 +26,11 @@ namespace SanctionAlerts.ApplicationTests
 		[Test]
 		public async Task TestSetup()
 		{
-			string fileData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
-
-			var dataService = new Mock<IDataService>();
-			dataService.Setup(x => x.GetData()).ReturnsAsync(fileData);
-
+			var serviceMockFactory = new ServiceMockFactory();
+			var dataService = serviceMockFactory.GetDataService();
+			var mapper = serviceMockFactory.GetMapper();
 			var context = new InMemoryDbContextFactory().GetArticleDbContext();
-
-			var mappingConfig = new MapperConfiguration(mc =>
-			{
-				mc.AddProfile(new MappingProfile());
-			});
-
-			var mapper = mappingConfig.CreateMapper();
-
-			var jobService = new JobsService(dataService.Object, context, mapper);
+			var jobService = new JobsService(dataService, context, mapper);
 
 			await jobService.FetchData();
 
@@ -50,34 +40,13 @@ namespace SanctionAlerts.ApplicationTests
 		[Test]
 		public async Task FetchData_GivenHeaders_FetchesData()
 		{
-			string fileData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
-			var headers = new List<KeyValuePair<string, IEnumerable<string>>>();
-			headers.Add(new KeyValuePair<string, IEnumerable<string>>
-				("Last-Modified",
-				new List<string>()
-				{
-					"Thu, 26 Mar 2020 14:23:25 GMT"
-				}
-				));
-
-			var dataService = new Mock<IDataService>();
-			dataService.Setup(x => x.GetData()).ReturnsAsync(fileData);
-			dataService.Setup(x => x.GetHeaders()).ReturnsAsync(headers);
-
-
+			var serviceMockFactory = new ServiceMockFactory();
+			var dataService = serviceMockFactory.GetDataService();
+			var mapper = serviceMockFactory.GetMapper();
 			var context = new InMemoryDbContextFactory().GetArticleDbContext();
-
-			var mappingConfig = new MapperConfiguration(mc =>
-			{
-				mc.AddProfile(new MappingProfile());
-			});
-
-			var mapper = mappingConfig.CreateMapper();
-
-			var jobService = new JobsService(dataService.Object, context, mapper);
+			var jobService = new JobsService(dataService, context, mapper);
 
 			await jobService.FetchHeaders();
-
 			await jobService.FetchData();
 
 			context.SdnEntities.Count().Should().NotBe(0);
