@@ -10,8 +10,8 @@ using SanctionAlerts.Database;
 namespace SanctionAlerts.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200328150529_added-fileinfos")]
-    partial class addedfileinfos
+    [Migration("20200329055158_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace SanctionAlerts.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime?>("LastDownloaded")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("datetime2");
 
@@ -40,6 +43,25 @@ namespace SanctionAlerts.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FileInfos");
+                });
+
+            modelBuilder.Entity("SanctionAlerts.Database.Entities.SdnEntity", b =>
+                {
+                    b.Property<int>("UId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SdnType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UId");
+
+                    b.ToTable("SdnEntities");
                 });
 #pragma warning restore 612, 618
         }

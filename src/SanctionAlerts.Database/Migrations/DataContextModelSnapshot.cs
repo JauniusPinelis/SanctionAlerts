@@ -46,9 +46,7 @@ namespace SanctionAlerts.Database.Migrations
             modelBuilder.Entity("SanctionAlerts.Database.Entities.SdnEntity", b =>
                 {
                     b.Property<int>("UId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("datetime2");

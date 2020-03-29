@@ -8,7 +8,7 @@ namespace SanctionAlerts.Database.Entities
 {
 	public class SdnEntity
 	{
-		[DatabaseGeneratedAttribute(DatabaseGeneratedOption.None)]
+		[DatabaseGeneratedAttribute(DatabaseGeneratedOption.None), Key]
 		public int UId { get; set; }
 		public string LastName { get; set; }
 		public string SdnType { get; set; }

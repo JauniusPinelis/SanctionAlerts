@@ -79,7 +79,7 @@ namespace SanctionAlerts.Database
 						sdnEntity.SdnType = sdnEntry.SdnType;
 						sdnEntity.LastModified = DateTime.Now;
 					}
-					await SaveChangesAsync();
+					
 				}
 				else
 				{
@@ -92,12 +92,13 @@ namespace SanctionAlerts.Database
 						LastModified = DateTime.Now
 					}
 					);
-					await SaveChangesAsync();
+					
 				}
+
+				
 			}
 
-			
-
+			await SaveChangesAsync();
 		}
 	}
 }
