@@ -76,5 +76,42 @@ namespace SanctionAlerts.ApplicationTests
 			context.SdnEntities.Count().Should().NotBe(0);
 			context.SdnEntities.FirstOrDefault().SdnType.Should().Be("NewType");
 		}
+
+		[Test]
+		public async Task FetchData_AddednewSdnEntry_ShowsAsLastModified()
+		{
+			var serviceMockFactory = new ServiceMockFactory();
+			var dataService = serviceMockFactory.GetDataService();
+			var mapper = serviceMockFactory.GetMapper();
+			var context = new InMemoryDbContextFactory().GetArticleDbContext();
+			var jobService = new JobsService(dataService, context, mapper);
+
+			await jobService.FetchHeaders();
+			await jobService.FetchData();
+
+			var updatedDataService = serviceMockFactory.
+				GetDataService("Sun, 29 Mar 2020 14:23:25 GMT",
+				TestContext.CurrentContext.TestDirectory + "\\Data\\UpdatedTestData.xml");
+
+			var updatedJobService = new JobsService(updatedDataService, context, mapper);
+
+			await updatedJobService.FetchHeaders();
+			await updatedJobService.FetchData();
+
+			var dataServiceWithNewEntry = serviceMockFactory.
+			GetDataService("Sun, 29 Mar 2020 15:23:25 GMT",
+			TestContext.CurrentContext.TestDirectory + "\\Data\\UpdatedTestDataWithNewEntry.xml");
+
+			updatedJobService = new JobsService(dataServiceWithNewEntry, context, mapper);
+
+			await updatedJobService.FetchHeaders();
+			await updatedJobService.FetchData();
+
+			context.SdnEntities.Count().Should().NotBe(0);
+
+			context.SdnEntities.Select(s => s.LastName).Should().Contain("Aml-Analytics");
+			context.SdnEntities.OrderByDescending(s => s.LastModified)
+				.FirstOrDefault().LastName.Should().Be("Aml-Analytics");
+		}
 	}
 }
