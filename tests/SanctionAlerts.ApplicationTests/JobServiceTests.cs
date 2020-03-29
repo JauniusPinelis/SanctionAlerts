@@ -51,5 +51,30 @@ namespace SanctionAlerts.ApplicationTests
 
 			context.SdnEntities.Count().Should().NotBe(0);
 		}
+
+		[Test]
+		public async Task FetchData_UpdatedLastModified_FetchesDataTwice()
+		{
+			var serviceMockFactory = new ServiceMockFactory();
+			var dataService = serviceMockFactory.GetDataService();
+			var mapper = serviceMockFactory.GetMapper();
+			var context = new InMemoryDbContextFactory().GetArticleDbContext();
+			var jobService = new JobsService(dataService, context, mapper);
+
+			await jobService.FetchHeaders();
+			await jobService.FetchData();
+
+			var updatedDataService = serviceMockFactory.
+				GetDataService("Sun, 29 Mar 2020 14:23:25 GMT",
+				TestContext.CurrentContext.TestDirectory + "\\Data\\UpdatedTestData.xml");
+
+			var updatedJobService = new JobsService(updatedDataService, context, mapper);
+
+			await updatedJobService.FetchHeaders();
+			await updatedJobService.FetchData();
+
+			context.SdnEntities.Count().Should().NotBe(0);
+			context.SdnEntities.FirstOrDefault().SdnType.Should().Be("NewType");
+		}
 	}
 }

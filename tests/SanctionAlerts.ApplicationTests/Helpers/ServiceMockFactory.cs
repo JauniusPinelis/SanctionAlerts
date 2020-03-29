@@ -14,13 +14,19 @@ namespace SanctionAlerts.ApplicationTests.Helpers
 	{
 		public IDataService GetDataService()
 		{
-			var fileData = File.ReadAllText(TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
+			return GetDataService("Thu, 26 Mar 2020 14:23:25 GMT",
+				TestContext.CurrentContext.TestDirectory + "\\Data\\TestData.xml");
+		}
+
+		public IDataService GetDataService(string lastModifiedDate, string fileUrl)
+		{
+			var fileData = File.ReadAllText(fileUrl);
 			var headers = new List<KeyValuePair<string, IEnumerable<string>>>();
 			headers.Add(new KeyValuePair<string, IEnumerable<string>>
 				("Last-Modified",
 				new List<string>()
 				{
-					"Thu, 26 Mar 2020 14:23:25 GMT"
+					lastModifiedDate
 				}
 				));
 
