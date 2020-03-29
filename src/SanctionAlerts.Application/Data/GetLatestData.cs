@@ -27,13 +27,14 @@ namespace SanctionAlerts.Application.Data
 
 			var lastDownloaded = await _context.GetSvcLastDownloaded();
 			var lastModified = await _context.GetSvcLastModified();
-
+			var lastHeadersChecked = await _context.GetSvcLastUpdated();
 
 			return new Response()
 			{
 				SdnEntries = sdnEntries,
 				LastDownloaded = lastDownloaded,
-				LastModified = lastModified
+				LastModified = lastModified,
+				LastHeadersChecked = lastHeadersChecked
 			};
 		}
 

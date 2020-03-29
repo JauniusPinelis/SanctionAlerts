@@ -33,6 +33,13 @@ namespace SanctionAlerts.Database
 			return svcFileEntity?.LastModified;
 		}
 
+		public async Task<DateTime?> GetSvcLastUpdated()
+		{
+			var svcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
+
+			return svcFileEntity?.LastUpdated;
+		}
+
 		public async Task UpdateSvcLastModified(DateTime lastModified)
 		{
 			var existingEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
