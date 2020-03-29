@@ -2,7 +2,13 @@ import React, { Component, ReactNode } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+/* Libraries */
 import axios from "axios";
+
+/* Components */
+
+import SdnEntryTable from "./components/SdnEntryTable";
+import ServiceStats from "./components/ServiceStats";
 
 /* React-bootstrap components */
 import Container from "react-bootstrap/Container";
@@ -34,8 +40,12 @@ class App extends Component {
       <div className="App">
         <Container>
           <Row>
-            <Col>col1</Col>
-            <Col>col2</Col>
+            <Col>
+              <SdnEntryTable />
+            </Col>
+            <Col>
+              <ServiceStats />
+            </Col>
           </Row>
         </Container>
       </div>
