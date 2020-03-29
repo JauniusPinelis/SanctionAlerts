@@ -22,15 +22,15 @@ namespace SanctionAlerts.Database
 		public async Task<DateTime?> GetSvcLastDownloaded()
 		{
 			var SvcFileEntity =  await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
-
-			return SvcFileEntity.LastDownloaded;
+			
+			return SvcFileEntity?.LastDownloaded;
 		}
 
 		public async Task<DateTime?> GetSvcLastModified()
 		{
 			var svcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
 
-			return svcFileEntity.LastModified;
+			return svcFileEntity?.LastModified;
 		}
 
 		public async Task UpdateSvcLastModified(DateTime lastModified)
@@ -57,8 +57,13 @@ namespace SanctionAlerts.Database
 		public async Task UpdateLastDownloaded()
 		{
 			var svcFileEntity = await FileInfos.FirstOrDefaultAsync(f => f.Name == "Svc");
-			svcFileEntity.LastDownloaded = DateTime.Now;
-			await SaveChangesAsync();
+			
+			if (svcFileEntity != null)
+			{
+				svcFileEntity.LastDownloaded = DateTime.Now;
+				await SaveChangesAsync();
+			}
+			
 		}
 
 		public async Task UpdateSdnData(IEnumerable<SdnEntry> sdnEntries)

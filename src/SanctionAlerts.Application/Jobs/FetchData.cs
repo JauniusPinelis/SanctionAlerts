@@ -32,7 +32,7 @@ namespace SanctionAlerts.Application.Jobs
 			var lastDownloaded = await _context.GetSvcLastDownloaded();
 			var lastModified = await _context.GetSvcLastModified();
 
-			if (lastDownloaded.HasValue && lastDownloaded.Value > lastModified)
+			if (lastDownloaded.HasValue && lastDownloaded > lastModified)
 			{
 				// Do nothing
 			}
