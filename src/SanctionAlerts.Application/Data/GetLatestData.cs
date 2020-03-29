@@ -43,7 +43,6 @@ namespace SanctionAlerts.Application.Data
 			public List<SdnViewModel> SdnEntries { get; set; }
 			public DateTime? LastDownloaded { get; set; }
 			public DateTime? LastModified { get; set; }
-
 			public DateTime? LastHeadersChecked { get; set; }
 		}
 	}
