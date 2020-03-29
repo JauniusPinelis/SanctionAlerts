@@ -1,5 +1,7 @@
 import React, { Component, ReactNode } from "react";
 
+import moment from "moment";
+
 import Table from "react-bootstrap/Table";
 
 interface SdnEntry {
@@ -39,7 +41,9 @@ class SdnEntryTable extends Component<Props, State> {
                 <td>{sdn.uId}</td>
                 <td>{sdn.lastName}</td>
                 <td>{sdn.sdnType}</td>
-                <td>{sdn.lastModified}</td>
+                <td>
+                  {moment(sdn.lastModified).format("MMMM Do YYYY, h:mm:ss a")}
+                </td>
               </tr>
             ))}
           </tbody>

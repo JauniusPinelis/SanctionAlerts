@@ -37,6 +37,9 @@ class App extends Component {
     lastDownloaded: ""
   };
   componentDidMount() {
+    this.loadData();
+  }
+  loadData = () => {
     axios.get(`/data`).then(res => {
       this.setState({
         sdnEntries: res.data.sdnEntries,
@@ -45,7 +48,7 @@ class App extends Component {
         lastDownloaded: res.data.lastDownloaded
       });
     });
-  }
+  };
   render(): ReactNode {
     return (
       <div className="App">
@@ -59,6 +62,7 @@ class App extends Component {
                 lastDownloaded={this.state.lastDownloaded}
                 lastHeadersChecked={this.state.lastHeadersChecked}
                 lastModified={this.state.lastModified}
+                loadData={this.loadData}
               />
             </Col>
           </Row>

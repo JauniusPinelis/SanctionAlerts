@@ -1,11 +1,15 @@
 import React, { Component, ReactNode } from "react";
 
+import moment from "moment";
+
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 interface Props {
   lastModified: string;
   lastHeadersChecked: string;
   lastDownloaded: string;
+  loadData: Function;
 }
 interface State {}
 
@@ -22,19 +26,35 @@ class ServiceSats extends Component<Props, State> {
         <tbody>
           <tr>
             <td>Last Checked Headers</td>
-            <td>{this.props.lastHeadersChecked}</td>
+            <td>
+              {moment(this.props.lastHeadersChecked).format(
+                "MMMM Do YYYY, h:mm:ss a"
+              )}
+            </td>
           </tr>
           <tr>
             <td>Last Downloaded</td>
-            <td>{this.props.lastDownloaded}</td>
+            <td>
+              {moment(this.props.lastDownloaded).format(
+                "MMMM Do YYYY, h:mm:ss a"
+              )}
+            </td>
           </tr>
           <tr>
             <td>Last Content Modified</td>
-            <td>{this.props.lastModified}</td>
+            <td>
+              {moment(this.props.lastModified).format(
+                "MMMM Do YYYY, h:mm:ss a"
+              )}
+            </td>
           </tr>
           <tr>
             <td>Refresh</td>
-            <td></td>
+            <td>
+              <Button onClick={() => this.props.loadData()} variant="success">
+                Refresh
+              </Button>
+            </td>
           </tr>
         </tbody>
       </Table>
