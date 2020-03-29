@@ -11,7 +11,7 @@ namespace SanctionAlerts.ApplicationTests.Helpers
 		public DataContext GetArticleDbContext()
 		{
 			var options = new DbContextOptionsBuilder<DataContext>()
-							.UseInMemoryDatabase(databaseName: "SanctionAlerts")
+							.UseInMemoryDatabase(Guid.NewGuid().ToString())
 							.Options;
 			var dbContext = new DataContext(options);
 
